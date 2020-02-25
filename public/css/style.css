@@ -1,0 +1,33 @@
+/*もじが表示されやすくなる*/
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+
+body{
+  overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
+}
+.navbar{
+  text-transform: uppercase; /*全て大文字に変換*/
+  font-weight: 700;
+  font-size: .9rem;
+  background: rgba(0, 0, 0, 0.6)!important;
+}
+.navbar-nav{
+  padding-right: .7rem;
+  padding-left: 0;
+}
+.navbar-dark .navbar-nav .nav-link{
+  color: white;
+  padding-top: .8rem;
+}
+.nav-item{
+    list-style: none;
+}
+footer{
+  height: 70px;
+}
+.fooer-content{
+  margin-top: 23px;
+}
+
+
+

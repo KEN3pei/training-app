@@ -12,74 +12,51 @@ use Carbon\Carbon;
 
 class TrainingController extends Controller
 {
-    public function add () {
+    public function add (Request $request) {
         
-        $Tweet = new Tweet;
-        $posts = $Tweet->all();
-        // dd($Tweet);
         $auth = Auth::user();
-        
-        return view('training.tweet', ['posts' => $posts, 'auth' => $auth]);
+        // dd($auth);
+        // $tweet = Tweet::find(1);
+        $today = substr(Carbon::today(), 0, 10);
+        //tweetテーブルのログイン中のユーザの今日の日付を含む投稿をget
+        $tweet = Tweet::where('user_id', $auth->id)->where('updated_at', 'LIKE', "%{$today}%")->get();
+        //なければ新しく作る
+        if($tweet == null || strpos($tweet, $today) === false){
+            $tweet = new Tweet;
+            $tweet->fill(['body' => '未入力','user_id' => $auth->id]);
+            $tweet->save();
+        }else{
+            //あった場合$tweetにレコードごと代入
+            foreach($tweet as $x){
+            $tweet = $x;
+            }
+        }
+        // セーブするときにその時の日付をcalendarテーブルに保存？
+        //calendarからtweetのbodyを呼び出したい
+        return view('training.tweet', ['tweet' => $tweet]);
     }
     
     public function tweet (Request $request) {
         
-        $tweet = new Tweet;
-        $form = $request->all();
-        
-        if (isset($form['body'])){
-            $tweet->body = $form['body'];
-            
-        }else{
-            $tweet->body = '未入力';
+        //request->idでtweetディスクを取得
+        //request->bodyがnullなら未入力、それ以外はそのまま
+        $form = $request->body;
+        if($form == null){
+            $form = '未入力';
         }
-        unset($form['_token']);
-        unset($form['body']);
-         //user_idの設置
+        
         $auth = Auth::user();
-        // dd($auth->id);
-        $tweet->user_id = $auth->id;
-        
-        $tweet->fill($form);
-        $tweet->save();
-        
-        if($auth->id == $tweet->user_id){
-            $posts = $tweet->all();
-        }
-        
+        // $tweet = Tweet::find(1);
         $today = substr(Carbon::today(), 0, 10);
-        $yesterday = substr(Carbon::yesterday(), 0, 10);
-        $twodays_ago = substr(new Carbon('-2 day'), 0, 10);
-        $threedays_ago = substr(new Carbon('-3 day'), 0, 10);
-        // $twodays_ago = new Carbon('-2 day');
-        $update_days = array(
-            'today' => '', 
-            'yesterday' => '',
-            'twodays_ago' => '',
-            'threedays_ago' => ''
-            );
-       
-        // dd($update_days);
-        foreach ($tweet->all() as $tweet_all){
-            // $update_ymd = $update_time->updated_at;
-            $update_at = $tweet_all->updated_at;
-            //$now_ymdに$updateが含まれているか確認する
-            if(strpos($update_at,$today) !== false){
-                $update_days['today'] = $tweet_all->body;
-               
-            }elseif(strpos($update_at,$yesterday) !== false){
-                $update_days['yesterday'] = $tweet_all->body;
-                
-            }elseif(strpos($update_at,$twodays_ago) !== false){
-                $update_days['twodays_ago'] = $tweet_all->body;
-                
-            }elseif(strpos($update_at,$twodays_ago) !== false){
-                $update_days['threedays_ago'] = $tweet_all->body;
+        //tweetテーブルのログイン中のユーザの今日の日付を含む投稿をget
+        $tweet = Tweet::where('user_id', $auth->id)->where('updated_at', 'LIKE', "%{$today}%")->get();
+            //あった場合$xのbodyを更新
+            foreach($tweet as $x){
+            $x->fill(['body' => $form]);
+            $x->save();
             }
-        }
-        // dd($update_days);
-        
-        return view('training.tweet', compact('update_days'),['posts' => $posts, 'auth' => $auth]);
+        return redirect('/');
+        // return view('training.tweet', ['tweet' => $tweet]);
     }
     
     

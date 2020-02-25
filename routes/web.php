@@ -14,13 +14,13 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', 'TrainingController@tweet')->middleware('auth');
-Route::post('/', 'TrainingController@tweet');
+Route::get('/', 'TrainingController@add')->middleware('auth');
+Route::post('/', 'TrainingController@tweet');//更新したらaddにリダイレクトすればいい？
 Route::get('/delete', 'TrainingController@delete')->middleware('auth');
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'HomeController@index')->name('home');
 Route::get('/home', 'TrainingController@add')->middleware('auth');
 
 

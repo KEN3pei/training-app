@@ -19,16 +19,49 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-	<!--<link rel="stylesheet" href="style.css">-->
-	<!--<link rel="stylesheet" href="css/fixed.css">-->
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet" >
+	<link href="{{ asset('css/fixed.css') }}" rel="stylesheet" >
+	
 </head>
-<body>
+<body data-spy="scroll" data-target="#responsivenuno">
     <div id="app">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a href="#" class="navbar-brand">Every Training</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#responsivenuno">
+		        <span class="navbar-toggler-icon"></span>
+        	</button>	
+            <div class="collapse navbar-collapse" id="responsivenuno">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="#" class="nav-link">myprofile</a></li>
+                    <li class="nav-item"><a href="/logout" class="nav-link">logout</a></li>
+                </ul>
+            </div>
+        </nav>
         
         <main class="py-4">
             @yield('content')
         </main>
+        
+        <footer class="fixed-bottom bg-dark">
+        <div class="row fooer-content">
+            <div class="col-4">
+                <div class="container text-center">
+                <a href="">home</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="container text-center">
+                <a href="">list</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="container text-center">
+                <a href="">calendar</a>
+                </div>
+            </div>
+        </div>
+        </footer>
     </div>
-    <!--<script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>-->
+    <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
 </body>
 </html>
