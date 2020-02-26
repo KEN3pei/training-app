@@ -17,6 +17,9 @@
 Route::get('/', 'TrainingController@add')->middleware('auth');
 Route::post('/', 'TrainingController@tweet');//更新したらaddにリダイレクトすればいい？
 Route::get('/delete', 'TrainingController@delete')->middleware('auth');
+Route::get('/calendar', 'CalendarController@index')->middleware('auth');
+Route::get('/calendar/weeks', 'CalendarController@calendar')->middleware('auth');
+
 
 Auth::routes();
 

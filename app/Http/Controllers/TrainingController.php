@@ -12,11 +12,12 @@ use Carbon\Carbon;
 
 class TrainingController extends Controller
 {
+    //ログインしたらデフォルトでその日の投稿を表示する
+    //なければ作成して未入力を表示
     public function add (Request $request) {
         
+        // dd('v');
         $auth = Auth::user();
-        // dd($auth);
-        // $tweet = Tweet::find(1);
         $today = substr(Carbon::today(), 0, 10);
         //tweetテーブルのログイン中のユーザの今日の日付を含む投稿をget
         $tweet = Tweet::where('user_id', $auth->id)->where('updated_at', 'LIKE', "%{$today}%")->get();
@@ -38,8 +39,8 @@ class TrainingController extends Controller
     
     public function tweet (Request $request) {
         
-        //request->idでtweetディスクを取得
         //request->bodyがnullなら未入力、それ以外はそのまま
+        // dd($request->id);
         $form = $request->body;
         if($form == null){
             $form = '未入力';
@@ -55,11 +56,8 @@ class TrainingController extends Controller
             $x->fill(['body' => $form]);
             $x->save();
             }
-        return redirect('/');
-        // return view('training.tweet', ['tweet' => $tweet]);
+        return redirect('/')->with('status', 'Profile updated!');
     }
-    
-    
     
     
 }

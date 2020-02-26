@@ -46,7 +46,7 @@
         <div class="row fooer-content">
             <div class="col-4">
                 <div class="container text-center">
-                <a href="">home</a>
+                <a href="{{ url('/') }}">home</a>
                 </div>
             </div>
             <div class="col-4">
@@ -56,7 +56,7 @@
             </div>
             <div class="col-4">
                 <div class="container text-center">
-                <a href="">calendar</a>
+                <a href="{{ url('/calendar') }}">calendar</a>
                 </div>
             </div>
         </div>
