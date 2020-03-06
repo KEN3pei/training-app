@@ -1,4 +1,4 @@
-@extends('layouts.training')
+@extends('layouts.calendar')
 
 @section('content')
 <div class="container mt-5">
@@ -9,7 +9,8 @@
                 <span class="month">{{ $month }}</span>
                 <a href="?ym={{ $next }}">&gt;</a>
             </div>
-            <table>
+            <div>
+            <table class="table">
                 <tr>
                     <th>日</th>
                     <th>月</th>
@@ -18,26 +19,39 @@
                     <th>木</th>
                     <th>金</th>
                     <th>土</th>
+                    
                 </tr>
                 @foreach($weeks as $week)
                     {!! $week !!}
                 @endforeach
             </table>
+            <div class="text-center">
+                @if(session('status'))
+                    <div class="alert alert-success">
+                    <!--<div>-->
+                    {{ session('status') }}
+                    </div>
+                @else
+                    <div class="alert alert-success">
+                    {{ $body }}
+                    </div>
+                @endif
+            </div>
+            </div>
         </div>
     </div>
-    <div>
-        <!--<p>{{ $body }}</p>-->
-        @if(session('status'))
-            <div class="alert alert-success">
+    <!--<div class="text-center">-->
+    <!--    @if(session('status'))-->
+    <!--        <div class="alert alert-success">-->
             <!--<div>-->
-            {{ session('status') }}
-            </div>
-        @else
-            <div class="alert alert-success">
-            {{ $body }}
-            </div>
-        @endif
-    </div>
+    <!--        {{ session('status') }}-->
+    <!--        </div>-->
+    <!--    @else-->
+    <!--        <div class="alert alert-success">-->
+    <!--        {{ $body }}-->
+    <!--        </div>-->
+    <!--    @endif-->
+    <!--</div>-->
 </div>
 
     

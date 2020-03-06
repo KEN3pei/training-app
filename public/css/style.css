@@ -5,6 +5,13 @@ body{
   overflow-x: hidden;
   font-family: 'Lato', sans-serif;
 }
+h4{
+  display: inline-block;
+  font-size: 16px;
+  color: #fff;
+  /*background-color: #fff;*/
+  /*margin-left: 40px;*/
+}
 .navbar{
   text-transform: uppercase; /*全て大文字に変換*/
   font-weight: 700;
@@ -22,12 +29,58 @@ body{
 .nav-item{
     list-style: none;
 }
+.tab-pane{
+  margin-top: 0px;
+  padding: 1em 1em;
+  background: #ff9900;
+}
+.edit-image-box{
+  background-color: #f0f0f0;
+}
+.img-item{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.tweet-area{
+  width: 100%;
+  /*height: 200px;*/
+  /*padding: 5px;*/
+  border-radius: 5px;
+  /*border: 0px;*/
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid #ff9900; 
+  z-index: 10;
+  outline: 0;
+}
+.sub-btn{
+  float: right;
+  position: relative;
+  /*display: inline-block;*/
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-left: solid 4px #ff9900;
+  border-right: solid 4px #ff9900;
+  color: #ff9900;
+  background: #e1f3ff;
+  transition: .4s;
+}
+.sub-btn:hover{
+    background: #ff9900;
+    color: #FFF;
+}
+
+
 footer{
   height: 70px;
 }
 .fooer-content{
   margin-top: 23px;
 }
+
 
 
 

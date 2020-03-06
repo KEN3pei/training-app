@@ -41,6 +41,7 @@ class CalendarController extends Controller
         
         $auth = Auth::user();
         $date = $request->date;
+        // dd($date);
         $d = Carbon::parse($date)->format('Y-m-d');
         $body = Tweet::where('updated_at', 'LIKE', "%{$d}%")->where('user_id', $auth->id)->get();
         if(strpos($body, $d) === false){
@@ -50,10 +51,12 @@ class CalendarController extends Controller
                 $body = $x->body;
             }
         }    
-        // dd($body);
+        // dd($d_s);
+        $d_y_m = substr("$d", 0, 7);
+        // dd($d_y_m);
         // $dと一致するtweetのbodyを取得する
         //もしなかったときは未入力を出力
-        
-        return redirect('/calendar')->with('status', $body);
+        // return view('training.calendar', ['status' => $body]);
+        return redirect('/calendar?ym='. $d_y_m)->with('status', $body);
     }
 }

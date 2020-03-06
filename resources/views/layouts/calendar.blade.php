@@ -15,14 +15,13 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet" >
-	<link href="{{ asset('css/fixed.css') }}" rel="stylesheet" >
-	<!--<link href="{{ asset('css/calendar.css') }}" rel="stylesheet" >-->
+	<!--<link href="{{ asset('css/style.css') }}" rel="stylesheet" >-->
+	<!--<link href="{{ asset('css/fixed.css') }}" rel="stylesheet" >-->
+	<link href="{{ asset('css/calendar.css') }}" rel="stylesheet" >
 	
 </head>
 <body data-spy="scroll" data-target="#responsivenuno">
@@ -32,30 +31,17 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#responsivenuno">
 		        <span class="navbar-toggler-icon"></span>
         	</button>	
-        	
             <div class="collapse navbar-collapse" id="responsivenuno">
                 <ul class="navbar-nav ml-auto">
-                    <!--//ここからlogoutする-->
-                    @guest
-                        <!--<li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @else
-                        <li class="nav-item"><a href="/profile" class="nav-link">myprofile</a></li>
-                        <li class="nav-item"><a href="" class="nav-link"
-                        onclick="event.preventDefault();
-                        document. getElementById('logout-form').submit();">Logout</a>
-                        <!--preventDefaulはonclickのデフォルト動作を妨害する-->
-                        <!--logout-form IDを取得するgetelement~ -->
-                        </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    @endguest
+                    <li class="nav-item"><a href="/profile" class="nav-link">myprofile</a></li>
+                    <li class="nav-item"><a href="/logout" class="nav-link"
+                    onclick="event.preventDefault();
+                        document. getElementById('logout-form').submit();">logout</a></li>
                 </ul>
             </div>
-            
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
         </nav>
         
         <main class="py-4">
@@ -71,7 +57,7 @@
             </div>
             <div class="col-4">
                 <div class="container text-center">
-                <a href="{{ url('/groupe') }}">list</a>
+                <a href="">list</a>
                 </div>
             </div>
             <div class="col-4">

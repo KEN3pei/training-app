@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tweet extends Model
 {
+    //指定できてると思ったら$gurdedになっていたから$fillableが指定できた
     protected $gurded = array('id');
     
     protected $fillable = [
