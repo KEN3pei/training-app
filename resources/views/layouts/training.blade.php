@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!--fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
     <!-- Styles -->
@@ -66,17 +67,20 @@
         <div class="row fooer-content">
             <div class="col-4">
                 <div class="container text-center">
-                <a href="{{ url('/') }}">home</a>
+                <a href="{{ url('/') }}"><i class="fas fa-home"></i>
+                <p>ホーム</p></p></a>
                 </div>
             </div>
             <div class="col-4">
                 <div class="container text-center">
-                <a href="{{ url('/groupe') }}">list</a>
+                <a href="{{ url('/groupe') }}"><i class="fas fa-list"></i>
+                <p>リスト</p></a>
                 </div>
             </div>
             <div class="col-4">
                 <div class="container text-center">
-                <a href="{{ url('/calendar') }}">calendar</a>
+                <a href="{{ url('/calendar') }}"><i class="far fa-calendar-alt"></i>
+                <p>カレンダー</p></a>
                 </div>
             </div>
         </div>
