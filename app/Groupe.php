@@ -20,5 +20,4 @@ class Groupe extends Model
     {
         return $this->hasMany('Groupemembar::class');
     }
-
 }

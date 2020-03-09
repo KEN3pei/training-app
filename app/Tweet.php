@@ -14,6 +14,10 @@ class Tweet extends Model
         'user_id'
         ];
         
+    public function belongto_user()
+    {
+        return $this->belongto('User::class');
+    }
     // public static $rules = array(
     //     'user_id' => 'required',
     //     'body' => 'required',

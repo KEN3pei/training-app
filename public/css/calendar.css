@@ -11,8 +11,6 @@ a {
   text-decoration: none;  
 }
 th {
-    /*height: 50px;*/
-    /*width: 120px;*/
     text-align: center;
 }
 th:nth-of-type(1),

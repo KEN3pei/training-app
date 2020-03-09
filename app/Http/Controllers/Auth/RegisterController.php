@@ -25,8 +25,12 @@ class RegisterController extends Controller
     
     public function RegistrationForm (){
         
-        return view('auth.register');
+        return view('auth.new_register');
     }
+    // public function register_userdata(){
+        
+    //     return view('auth.new_login');
+    // }
 
     /**
      * Where to redirect users after registration.

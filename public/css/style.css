@@ -12,6 +12,14 @@ h4{
   /*background-color: #fff;*/
   /*margin-left: 40px;*/
 }
+li{
+  list-style: none;
+}
+#list_box{
+  border-radius:2px;
+  outline:0;
+  background:#eee;
+}
 .navbar{
   text-transform: uppercase; /*全て大文字に変換*/
   font-weight: 700;
@@ -72,6 +80,70 @@ h4{
     background: #ff9900;
     color: #FFF;
 }
+.image_row{
+  padding-left: 13%;
+  padding-right: 13%;
+}
+.main-section{
+  height: 78vh;
+  background-color: #f0f0f0;
+}
+.image_section{
+  background-color: #f0f0f0;
+  height: 78vh;
+}
+.users-section{
+  height: 100vh;
+  background-color: #fff;
+}
+.form-control-file{
+  display: inline-block !important;
+  font-size: 12px;
+}
+.update_img{
+  font-size: 12px;
+  text-align: center;
+}
+.input_name{
+  font-size: 12px;
+}
+
+
+a {
+  text-decoration: none;  
+}
+th {
+    text-align: center;
+}
+th:nth-of-type(1),
+td:nth-of-type(1) {
+    color: red;
+}
+th:nth-of-type(7),
+td:nth-of-type(7) {
+    color: blue;
+}
+.full-height {
+    margin: 0 auto;
+}
+.content {
+    text-align: center;
+}
+table {
+    table-layout: fixed;
+}
+
+/*group*/
+.add_button{
+   display: inline-block;
+}
+.membar_name{
+    display: inline-block;
+}
+.groupe-img{
+    width: 45px;
+    height: 45px;
+}
 
 
 footer{
@@ -81,6 +153,23 @@ footer{
   margin-top: 23px;
 }
 
+/*// 極小デバイス（縦向きモバイル, 576px 未満）*/
+/*// Bootstrapではデフォルトで xsのメディアクエリは存在しない*/
+
+/*// 小デバイス（横向きモバイル, 576px 以上）*/
+@media (min-width: 576px) {
+  
+  
+}
+
+/*// 中デバイス（タブレット, 768px 以上）*/
+/*@media (min-width: 768px) { ... }*/
+
+/*// 大デバイス（デスクトップ, 992px 以上）*/
+/*@media (min-width: 992px) { ... }*/
+
+/*// 特大デバイス（ワイド・デスクトップ, 1200px 以上）*/
+/*@media (min-width: 1200px) { ... }*/
 
 
 

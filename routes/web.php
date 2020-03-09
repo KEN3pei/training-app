@@ -19,9 +19,10 @@ Route::post('/', 'TrainingController@tweet');//更新したらaddにリダイレ
 
 Route::get('/edit', 'TrainingController@edit');
 Route::post('/edit', 'TrainingController@img_update');
+Route::post('/edit/upname', 'TrainingController@name_update');
 
 Route::get('/profile', 'TrainingController@myprofile');
-// Route::post('/profile', 'TrainingController@myprofile');
+Route::post('/profile', 'TrainingController@myprofile');
 
 Route::get('/groupe', 'GroupeController@index');
 Route::post('/groupe', 'GroupeController@create');
@@ -41,5 +42,3 @@ Auth::routes();
 
 Route::get('/logout', 'HomeController@index')->name('home');
 Route::get('/home', 'TrainingController@add')->middleware('auth');
-
-

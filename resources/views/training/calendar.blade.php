@@ -1,4 +1,4 @@
-@extends('layouts.calendar')
+@extends('layouts.training')
 
 @section('content')
 <div class="container mt-5">

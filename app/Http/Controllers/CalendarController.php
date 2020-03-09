@@ -13,7 +13,6 @@ use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
-    
     private $service;
     
     public function __construct(CalendarService $service)
@@ -22,13 +21,13 @@ class CalendarController extends Controller
         // dd($this->service);
     }
     
-    public function index (){
-        
-        if(!isset($body)){
-            $body = "未入力";   
+    public function index()
+    {
+        if (!isset($body)) {
+            $body = "未入力";
         }
         
-        return view('training.calendar', [ 
+        return view('training.calendar', [
             'prev' => Calendar::getPrev(),
             'next' => Calendar::getnext(),
             'month' => Calendar::getMonth(),
@@ -37,20 +36,20 @@ class CalendarController extends Controller
             ]);
     }
     
-    public function calendar (Request $request){
-        
+    public function calendar(Request $request)
+    {
         $auth = Auth::user();
         $date = $request->date;
         // dd($date);
         $d = Carbon::parse($date)->format('Y-m-d');
         $body = Tweet::where('updated_at', 'LIKE', "%{$d}%")->where('user_id', $auth->id)->get();
-        if(strpos($body, $d) === false){
+        if (strpos($body, $d) === false) {
             $body = "未入力";
-        }else{
-            foreach($body as $x){
+        } else {
+            foreach ($body as $x) {
                 $body = $x->body;
             }
-        }    
+        }
         // dd($d_s);
         $d_y_m = substr("$d", 0, 7);
         // dd($d_y_m);
