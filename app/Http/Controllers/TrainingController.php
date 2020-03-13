@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Tweet;
 use App\User;
+use App\Groupemembar;
 use Auth;
 use Carbon\Carbon;
 use Storage;
@@ -28,32 +29,30 @@ class TrainingController extends Controller
         $three_days_ago = substr(Carbon::today()->subDay(3), 0, 10);
         
         $four_days = array($today, $yesterday, $two_days_ago, $three_days_ago);
-        // dd($four_days);
+        
         foreach ($four_days as $day) {
             $tweet_days = Tweet::where('user_id', $auth->id)->where('updated_at', 'LIKE', "%{$day}%")->get();
             foreach ($tweet_days as $tweet) {
                 $tweets[] = $tweet;
             }
         }
-        if ($tweets[3] == null || strpos($tweets[3], $three_days_ago) === false) {
+        if (!isset($tweet[3])) {
             $three_day = "３日前の投稿はありません";
         } else {
             $three_day = $tweets[3]->body;
         }
-        
-        if ($tweets[2] == null || strpos($tweets[2], $two_days_ago) === false) {
+        if (!isset($tweet[2])) {
             $two_day = "おとといの投稿はありません";
         } else {
             $two_day = $tweets[2]->body;
         }
-        
-        if ($tweets[1] == null || strpos($tweets[1], $yesterday) === false) {
+        if (!isset($tweet[1])) {
             $y_day = "昨日の投稿はありません";
         } else {
             $y_day = $tweets[1]->body;
         }
         //なければ新しく作る
-        if ($tweets[0] == null || strpos($tweets[0], $today) === false) {
+        if (!isset($tweet[0])) {
             $tweet = new Tweet;
             $tweet->fill(['body' => '未入力','user_id' => $auth->id]);
             $tweet->save();
@@ -79,6 +78,12 @@ class TrainingController extends Controller
         }
         // dd($image);
         // 全員のbodyを表示する
+        //Userテーブルからtweetテーブル
+        // $x = User::find(4)->tweet_get;
+        // $v = Tweet::find(71);
+        // dd($v);
+        
+        
         $tweet_all = Tweet::all();
         $sorted = $tweet_all->sortByDesc('updated_at');
         // dd($sorted->user_id->image);
@@ -90,7 +95,6 @@ class TrainingController extends Controller
         return view('training.tweet', [
             // 'user_all' => $user_all,
             'sorted' => $sorted,
-            
             'image' => $image,
             'auth' => $auth,
             'tweet' => $tweet,
@@ -204,9 +208,12 @@ class TrainingController extends Controller
     // アカウント削除
     public function delete(Request $request)
     {
-        $user = User::find($request->user_id);
-        $user->delete();
-        
+        $auth_id = $request->user_id;
+        //アカウントの削除
+        $user = User::find($auth_id)->delete();
+        //グループメンバーから同アカウントの削除
+        $groupemembar = Groupemembar::where('groupe_id', $auth_id)->delete();
+        // dd($groupemembar);
         Auth::logout();
         // dd($user);
         

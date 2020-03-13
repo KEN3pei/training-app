@@ -17,6 +17,6 @@ class Groupemembar extends Model
     
     public function belongto()
     {
-        return $this->belongto('Groupe::class');
+        return $this->belongsTo('App\Groupe');
     }
 }

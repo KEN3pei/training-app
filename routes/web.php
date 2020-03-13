@@ -28,12 +28,14 @@ Route::get('/groupe', 'GroupeController@index');
 Route::post('/groupe', 'GroupeController@create');
 
 Route::get('/groupe/add', 'GroupeController@add_groupe');
-// Route::post('/groupe/add', 'GroupeController@add_groupe');
+Route::post('/groupe/add', 'GroupeController@add_groupe');
 
 Route::get('/groupe/serch', 'GroupeController@search');
 Route::post('/groupe/serch', 'GroupeController@search');
 
 Route::get('/delete', 'TrainingController@delete');
+Route::post('/delete', 'TrainingController@delete');
+
 Route::get('/calendar', 'CalendarController@index')->middleware('auth');
 Route::get('/calendar/weeks', 'CalendarController@calendar')->middleware('auth');
 

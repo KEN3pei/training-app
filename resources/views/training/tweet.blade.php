@@ -69,14 +69,12 @@
             <h3>他の投稿</h3>
             @if(isset($sorted))
                   @foreach($sorted as $tweet)
-                 
                         <ul>
                               @if(($tweet->body) !== "未入力")
-                              <img src="{{ $tweet->id }}"></img>
+                              <img src="{{ $tweet->image }}"></img>
                               <li>{{ $tweet->body }}</li>
                               @endif
                         </ul>
-                  
                   @endforeach
             @endif
       </div>

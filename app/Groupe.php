@@ -18,6 +18,6 @@ class Groupe extends Model
     
     public function membar_get()
     {
-        return $this->hasMany('Groupemembar::class');
+        return $this->hasMany('App\Groupemembar');
     }
 }

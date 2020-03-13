@@ -23,7 +23,6 @@
             <!--if、groupeがnullではなければ表示する-->
             <!--nullなら違うものを表示する-->
             <ul>
-                
                  @foreach($user_all as $user)
                 <li>
                     <img src="{{ $user->image }}" class="groupe-img"></img>
@@ -37,14 +36,14 @@
                       <!--foreachでgroupeのnameを表示する-->
                       <!--各dropdownをクリックしたらそこのgroupe_nameのgroupe_mambarに追加される-->
                       <ul class="dropdown-menu">
-                            @foreach($groupes as $groupe)
-                                <li><a href="{{ action('GroupeController@add_groupe')}}">{{ $groupe->list_name }}に追加</a></li>
+                            @foreach($list_names as $list)
+                                <li><a href="{{ action('GroupeController@add_groupe', ['user_id' => $user->id, 'groupe_id' => $list->id])}}">
+                                    {{ $list->list_name }}に追加</a></li>
                             @endforeach
                       </ul>
                     </div>
                 </li>
                 @endforeach
-                
             </ul>
         </div>
         
@@ -56,18 +55,17 @@
                 <li>
                     <p class="membar_name">{{ $list->list_name }}</p>
                     <div class="btn-group">
-                      <button type="button" class="btn btn-default">Default</button>
+                      <button type="button" class="btn btn-default">membars</button>
                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <!--foreachでgroupeのnameを表示する-->
                       <!--各dropdownをクリックしたらそこのgroupe_nameのgroupe_mambarに追加される-->
-                      
                       <ul class="dropdown-menu">
-                          
-                            <li><a href="#">name</a></li>
-                            
+                            @foreach($list->membar_get as $membar)
+                            <li><a href="#">{{ $membar->user_id }}</a></li>
+                            @endforeach
                       </ul>
                       
                     </div>

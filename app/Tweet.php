@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\User;
+
 class Tweet extends Model
 {
     //指定できてると思ったら$gurdedになっていたから$fillableが指定できた
@@ -14,9 +16,9 @@ class Tweet extends Model
         'user_id'
         ];
         
-    public function belongto_user()
+    public function belongsto_user()
     {
-        return $this->belongto('User::class');
+        return $this->belongsTo('App\User');
     }
     // public static $rules = array(
     //     'user_id' => 'required',
