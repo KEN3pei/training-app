@@ -4,9 +4,6 @@
 <div class="container mt-5">
       <div class="main-section">
       <div>
-            <!--<form method="post" name="form1" action="{{ action('TrainingController@add') }}">-->
-                <!--<a href="javascript:form1.submit()">リンク名</a>-->
-            <!--</form>-->
             <ul class="nav nav-tabs nav-fill" role="tablist">
                   <li class="nav-item">
                         <a href="#item1 javascript:nav1.submit()" id="item1-tab" data-toggle="tab" class="nav-link active" role="tab" aria-controls="item1" aria-selected="true">今日</a>
@@ -65,21 +62,55 @@
             </div>
       @endif
       </div>
-      <div class="users-section">
-            <h3>他の投稿</h3>
-            @if(isset($sorted))
+      <!--<div class="users-section">-->
+      <!--      <h3>他の投稿</h3>-->
+      <!--      <div>-->
+      <!--      @if(isset($sorted))-->
+      <!--            <ul>-->
+      <!--            @foreach($sorted as $tweet)-->
+      <!--                  @if(($tweet->body) !== "未入力")-->
+      <!--                  <img src="{{ $tweet->image }}"></img>-->
+      <!--                  <li>{{ $tweet->body }}</li>-->
+      <!--                  @endif-->
+      <!--            @endforeach-->
+      <!--            </ul>-->
+      <!--      @endif-->
+      <!--      </div>-->
+      <!--</div>-->
+	<div id="sampleScrollSpy">
+		<ul class="nav nav-tabs">
+			<!--<li><a class="linkInThePage" href="#sampleA">ページ内リンクＡ</a></li>-->
+			<!--<li><a class="linkInThePage" href="#sampleB">ページ内リンクＢ</a></li>-->
+			<!--<li><a class="linkInThePage" href="#sampleC">ページ内リンクＣ</a></li>-->
+		</ul>
+	</div>
+	<div id="sampleMainContents" data-spy="scroll" data-target="#sampleScrollSpy" data-offset="112">
+		<!--<p><a href="../javascript/scrollspy-tabs.html" target="_blank">タブ・メニューにおけるスクロールスパイ</a>のサンプル。</p>-->
+		<h2 id="sampleA">Ａ</h2>
+		@if(isset($sorted))
+                  <ul>
                   @foreach($sorted as $tweet)
-                        <ul>
-                              @if(($tweet->body) !== "未入力")
-                              <img src="{{ $tweet->image }}"></img>
-                              <li>{{ $tweet->body }}</li>
-                              @endif
-                        </ul>
+                        @if(($tweet->body) !== "未入力")
+                        <img src="{{ $tweet->image }}"></img>
+                        <li>{{ $tweet->body }}</li>
+                        @endif
                   @endforeach
+                  </ul>
             @endif
-      </div>
-      </div>
-</div>
+		<!--<ol>-->
+		<!--	<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>-->
+		<!--</ol>-->
+		<h2 id="sampleB">Ｂ</h2>
+		<ol>
+			<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+		</ol>
+		<h2 id="sampleC">Ｃ</h2>
+		<ol>
+			<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+		</ol>
+	</div>
 
+</div>
+</div>
     
 @endsection

@@ -25,6 +25,9 @@
                     {!! $week !!}
                 @endforeach
             </table>
+            <div>
+                <h5>当日の投稿</h5>
+            </div>
             <div class="text-center">
                 @if(session('status'))
                     <div class="alert alert-success">
@@ -33,7 +36,8 @@
                     </div>
                 @else
                     <div class="alert alert-success">
-                    {{ $body }}
+                    <!--{{ $body }}-->
+                    {{ session('status') }}
                     </div>
                 @endif
             </div>

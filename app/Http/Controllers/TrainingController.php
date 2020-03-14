@@ -32,27 +32,30 @@ class TrainingController extends Controller
         
         foreach ($four_days as $day) {
             $tweet_days = Tweet::where('user_id', $auth->id)->where('updated_at', 'LIKE', "%{$day}%")->get();
+            // if (isset($tweet_days)) {
             foreach ($tweet_days as $tweet) {
                 $tweets[] = $tweet;
             }
+            // }
         }
-        if (!isset($tweet[3])) {
+        // dd($tweets);
+        if (!isset($tweets[3])) {
             $three_day = "３日前の投稿はありません";
         } else {
             $three_day = $tweets[3]->body;
         }
-        if (!isset($tweet[2])) {
+        if (!isset($tweets[2])) {
             $two_day = "おとといの投稿はありません";
         } else {
             $two_day = $tweets[2]->body;
         }
-        if (!isset($tweet[1])) {
+        if (!isset($tweets[1])) {
             $y_day = "昨日の投稿はありません";
         } else {
             $y_day = $tweets[1]->body;
         }
         //なければ新しく作る
-        if (!isset($tweet[0])) {
+        if (!isset($tweets[0])) {
             $tweet = new Tweet;
             $tweet->fill(['body' => '未入力','user_id' => $auth->id]);
             $tweet->save();
@@ -82,8 +85,6 @@ class TrainingController extends Controller
         // $x = User::find(4)->tweet_get;
         // $v = Tweet::find(71);
         // dd($v);
-        
-        
         $tweet_all = Tweet::all();
         $sorted = $tweet_all->sortByDesc('updated_at');
         // dd($sorted->user_id->image);
@@ -91,7 +92,7 @@ class TrainingController extends Controller
             // dd($x->user->image);
             // $user_id[] = $x->user_id;
         }
-        
+        // dd($tweet);
         return view('training.tweet', [
             // 'user_all' => $user_all,
             'sorted' => $sorted,
@@ -108,7 +109,7 @@ class TrainingController extends Controller
     {
         
         //request->bodyがnullなら未入力、それ以外はそのまま
-        // dd($request->id);
+        // dd($request->body);
         $form = $request->body;
         if ($form == null) {
             $form = '未入力';
@@ -119,9 +120,11 @@ class TrainingController extends Controller
         $today = substr(Carbon::today(), 0, 10);
         //tweetテーブルのログイン中のユーザの今日の日付を含む投稿をget
         $tweet = Tweet::where('user_id', $auth->id)->where('updated_at', 'LIKE', "%{$today}%")->get();
+        // dd($tweet);
         //あった場合$xのbodyを更新
         foreach ($tweet as $x) {
-            $x->fill(['body' => $form]);
+            $x->body = $form;
+            // $x->fill(['body' => $form]);
             $x->save();
         }
         return redirect('/')->with('status', 'Tweet updated!');

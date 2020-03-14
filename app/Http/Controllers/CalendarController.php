@@ -43,14 +43,16 @@ class CalendarController extends Controller
         // dd($date);
         $d = Carbon::parse($date)->format('Y-m-d');
         $body = Tweet::where('updated_at', 'LIKE', "%{$d}%")->where('user_id', $auth->id)->get();
+        // dd($body);
         if (strpos($body, $d) === false) {
             $body = "未入力";
         } else {
             foreach ($body as $x) {
+                // dd($x->body);
                 $body = $x->body;
             }
         }
-        // dd($d_s);
+        // dd($body);
         $d_y_m = substr("$d", 0, 7);
         // dd($d_y_m);
         // $dと一致するtweetのbodyを取得する

@@ -107,6 +107,9 @@ li{
 .input_name{
   font-size: 12px;
 }
+.groupe-img{
+  border-radius: 50%;
+}
 
 
 a {
@@ -143,6 +146,15 @@ table {
 .groupe-img{
     width: 45px;
     height: 45px;
+}
+#sampleHeader {
+	height: 112px;
+}
+#sampleMainContents {
+	overflow: scroll;
+	height: 380px;
+	/*padding: 2em;*/
+	border-left: 1px solid #ddd;
 }
 
 
